@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+void unosStringova(char *str1, char *str2, int *areStringsEntered);
+void spajanjeStringova(const char *str1, const char *str2, char *result);
+int provjeraPodstringa(const char *str1, const char *str2);
+
+int main() {
+    char str1[100] = "", str2[100] = "", result[200];
+    int opcija;
+    int areStringsEntered = 0;
+
+    do {
+        printf("\n*********************************************************\n");
+        printf("        Operacije sa stringovima\n");
+        printf("*********************************************************\n");
+        printf("1. Unos stringova\n");
+        printf("2. Spajanje stringova\n");
+        printf("3. Provjera da li je drugi string podstring prvog stringa\n");
+        printf("4. Izlaz\n");
+        printf("*********************************************************\n");
+        printf("Unesite opciju: ");
+        scanf("%d", &opcija);
+        getchar(); // Clear the newline character from input buffer
+
+        switch (opcija) {
+            case 1:
+                unosStringova(str1, str2, &areStringsEntered);
+                break;
+            case 2:
+                if (areStringsEntered) {
+                    spajanjeStringova(str1, str2, result);
+                    printf("Spojeni string: %s\n", result);
+                } else {
+                    printf("Molim vas izaberite opciju 1.\n");
+                }
+                break;
+            case 3:
+                if (areStringsEntered) {
+                    if (provjeraPodstringa(str1, str2)) {
+                        printf("Drugi string je podstring prvog stringa.\n");
+                    } else {
+                        printf("Drugi string nije podstring prvog stringa.\n");
+                    }
+                } else {
+                    printf("Molim vas izaberite opciju 1.\n");
+                }
+                break;
+            case 4:
+                printf("Izlaz iz programa.\n");
+                break;
+            default:
+                printf("Nepostojeca opcija. Pokusajte ponovo.\n");
+        }
+    } while (opcija != 4);
+
+    return 0;
+}
+
+void unosStringova(char *str1, char *str2, int *areStringsEntered) {
+    printf("Unesite prvi string: ");
+    fgets(str1, 100, stdin);
+    str1[strcspn(str1, "\n")] = 0; 
+
+    printf("Unesite drugi string: ");
+    fgets(str2, 100, stdin);
+    str2[strcspn(str2, "\n")] = 0;
+
+    *areStringsEntered = 1;
+}
+
+void spajanjeStringova(const char *str1, const char *str2, char *result) {
+    strcpy(result, str1);
+    strcat(result, str2);
+}
+
+int provjeraPodstringa(const char *str1, const char *str2) {
+    return strstr(str1, str2) != NULL;
+}
