@@ -23,7 +23,7 @@ int main() {
         printf("*********************************************************\n");
         printf("Unesite opciju: ");
         scanf("%d", &opcija);
-        getchar(); // Clear the newline character from input buffer
+        getchar();
 
         switch (opcija) {
             case 1:
