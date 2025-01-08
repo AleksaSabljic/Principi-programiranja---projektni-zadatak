@@ -14,7 +14,7 @@ int main() {
 
     do {
         printf("\n*********************************************************\n");
-        printf("        Operacije sa stringovima\n");
+        printf("                 Operacije sa stringovima\n");
         printf("*********************************************************\n");
         printf("1. Unos stringova\n");
         printf("2. Spajanje stringova\n");
